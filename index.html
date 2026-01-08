@@ -6,297 +6,386 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Christian Tarrasch — Portfolio</title>
       <style>
-            /* Base Styles */
+            :root {
+                  /* Color Palette */
+                  --bg-color: #FAFAFA;
+                  --text-main: #1A1A1A;
+                  --text-muted: #666666;
+                  --accent-color: #2563EB;
+                  /* Royal Blue */
+                  --card-bg: #FFFFFF;
+                  --border-color: #E5E5E5;
+
+                  /* Spacing */
+                  --container-width: 900px;
+                  --header-spacing: 5rem;
+            }
+
+            /* Reset & Base */
+            * {
+                  box-sizing: border-box;
+                  margin: 0;
+                  padding: 0;
+            }
+
             body {
-                  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+                  background-color: var(--bg-color);
+                  color: var(--text-main);
                   line-height: 1.6;
-                  color: #333;
-                  max-width: 800px;
-                  margin: 0 auto;
-                  padding: 40px 20px;
-                  background-color: #fff;
-            }
-
-            /* Typography */
-            h1 {
-                  font-size: 2.2rem;
-                  font-weight: 700;
-                  margin-bottom: 0.5rem;
-                  letter-spacing: -0.5px;
-            }
-
-            h2 {
-                  font-size: 1.5rem;
-                  font-weight: 600;
-                  margin-top: 3rem;
-                  margin-bottom: 1.5rem;
-                  border-bottom: 1px solid #eaeaea;
-                  padding-bottom: 10px;
+                  -webkit-font-smoothing: antialiased;
             }
 
             a {
-                  color: #0066cc;
+                  color: inherit;
                   text-decoration: none;
+                  transition: color 0.2s ease;
             }
 
             a:hover {
-                  text-decoration: underline;
+                  color: var(--accent-color);
             }
 
-            p {
-                  margin-bottom: 1.5rem;
+            /* Layout */
+            .container {
+                  max-width: var(--container-width);
+                  margin: 0 auto;
+                  padding: 0 24px;
             }
 
-            /* Header & Nav */
+            /* Header / Hero */
             header {
-                  margin-bottom: 3rem;
+                  padding: var(--header-spacing) 0 3rem;
             }
 
-            nav {
-                  margin-top: 10px;
-                  font-size: 1.1rem;
+            .hero-layout {
+                  display: grid;
+                  grid-template-columns: 1fr auto;
+                  gap: 48px;
+                  align-items: start;
             }
 
-            nav span {
-                  margin: 0 8px;
-                  color: #ccc;
+            .hero-content h1 {
+                  font-size: 2.5rem;
+                  font-weight: 700;
+                  letter-spacing: -0.03em;
+                  margin-bottom: 1rem;
             }
 
-            /* Layout Grid for Profile */
-            .profile-container {
+            .hero-links {
                   display: flex;
-                  gap: 40px;
-                  align-items: flex-start;
+                  gap: 16px;
                   margin-bottom: 2rem;
+                  font-size: 0.95rem;
+                  color: var(--text-muted);
             }
 
-            .profile-text {
-                  flex: 1;
+            .hero-links a {
+                  border-bottom: 1px solid transparent;
+            }
+
+            .hero-links a:hover {
+                  border-bottom-color: var(--accent-color);
+            }
+
+            .bio {
+                  font-size: 1.1rem;
+                  color: #444;
+                  max-width: 600px;
             }
 
             .profile-photo {
-                  width: 200px;
-                  height: 200px;
+                  width: 160px;
+                  height: 160px;
                   border-radius: 50%;
-                  /* Circle crop */
-                  background-color: #f0f0f0;
-                  /* Placeholder color */
                   object-fit: cover;
-                  flex-shrink: 0;
+                  border: 2px solid var(--border-color);
+                  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             }
 
-            /* Sections specific styles */
-            .news-item {
-                  display: flex;
-                  margin-bottom: 12px;
+            /* Sections */
+            section {
+                  padding: 3rem 0;
             }
 
-            .news-date {
-                  min-width: 100px;
-                  font-family: monospace;
-                  color: #666;
-            }
-
-            .publication-item {
-                  margin-bottom: 1.5rem;
-            }
-
-            .pub-title {
+            .section-title {
+                  font-size: 1.25rem;
                   font-weight: 600;
-                  display: block;
+                  margin-bottom: 2rem;
+                  display: flex;
+                  align-items: center;
+                  gap: 12px;
             }
 
-            .pub-authors {
+            .section-title::after {
+                  content: "";
+                  flex: 1;
+                  height: 1px;
+                  background-color: var(--border-color);
+            }
+
+            /* Project Grid */
+            .projects-grid {
+                  display: grid;
+                  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+                  gap: 32px;
+            }
+
+            .project-card {
+                  background: var(--card-bg);
+                  border: 1px solid var(--border-color);
+                  border-radius: 12px;
+                  overflow: hidden;
+                  transition: transform 0.2s ease, box-shadow 0.2s ease;
+                  display: flex;
+                  flex-direction: column;
+                  text-decoration: none;
+                  /* Make whole card clickable */
+                  color: inherit;
+            }
+
+            .project-card:hover {
+                  transform: translateY(-4px);
+                  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+                  border-color: var(--accent-color);
+            }
+
+            .card-image {
+                  width: 100%;
+                  height: 240px;
+                  background-color: #eee;
+                  /* Placeholder Gradient - User should replace with real images */
+                  background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: #888;
+                  font-weight: 500;
+                  font-size: 0.9rem;
+                  position: relative;
+            }
+
+            /* Specific placeholder styles to distinguish cards */
+            .card-image.raytracer {
+                  background-image: linear-gradient(135deg, #2b1331 0%, #b388eb 100%);
+                  color: white;
+            }
+
+            .card-image.physics {
+                  background-image: linear-gradient(135deg, #e6dedd 0%, #3b8d99 100%);
+                  color: #222;
+            }
+
+            .card-content {
+                  padding: 24px;
+                  flex: 1;
+                  display: flex;
+                  flex-direction: column;
+            }
+
+            .card-title {
+                  font-size: 1.2rem;
+                  font-weight: 700;
+                  margin-bottom: 8px;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+            }
+
+            .card-arrow {
+                  opacity: 0;
+                  transform: translateX(-10px);
+                  transition: all 0.2s ease;
+                  color: var(--accent-color);
+            }
+
+            .project-card:hover .card-arrow {
+                  opacity: 1;
+                  transform: translateX(0);
+            }
+
+            .card-tags {
+                  font-size: 0.8rem;
+                  color: var(--text-muted);
+                  font-family: monospace;
+                  margin-bottom: 12px;
+                  text-transform: uppercase;
+                  letter-spacing: 0.05em;
+            }
+
+            .card-desc {
+                  font-size: 0.95rem;
                   color: #555;
-                  font-size: 0.95rem;
+                  line-height: 1.5;
             }
 
-            .pub-venue {
+            /* Compact Lists (News/Experience) */
+            .compact-list {
+                  list-style: none;
+            }
+
+            .compact-item {
+                  display: grid;
+                  grid-template-columns: 120px 1fr;
+                  margin-bottom: 16px;
+                  align-items: baseline;
+            }
+
+            .compact-date {
+                  font-size: 0.9rem;
+                  color: var(--text-muted);
+                  font-family: monospace;
+            }
+
+            .compact-content strong {
+                  display: inline-block;
+                  margin-right: 6px;
+                  color: var(--text-main);
+            }
+
+            .compact-content span {
+                  color: #555;
+            }
+
+            .compact-content .venue {
                   font-style: italic;
-                  color: #666;
-                  font-size: 0.95rem;
+                  color: var(--text-muted);
             }
 
-            /* Responsive Design */
+            /* Mobile */
             @media (max-width: 600px) {
-                  .profile-container {
-                        flex-direction: column-reverse;
-                        /* Text on bottom, photo on top */
-                        align-items: center;
+                  .hero-layout {
+                        grid-template-columns: 1fr;
+                        gap: 24px;
                         text-align: center;
                   }
 
-                  h2 {
-                        text-align: left;
+                  .hero-links {
+                        justify-content: center;
                   }
 
-                  .news-item {
-                        flex-direction: column;
+                  .profile-photo {
+                        margin: 0 auto;
+                        order: -1;
+                        /* Photo first on mobile */
                   }
 
-                  .news-date {
-                        margin-bottom: 4px;
-                        font-weight: bold;
+                  .projects-grid {
+                        grid-template-columns: 1fr;
+                  }
+
+                  .compact-item {
+                        grid-template-columns: 1fr;
+                        gap: 4px;
+                  }
+
+                  .compact-date {
+                        font-size: 0.8rem;
+                        opacity: 0.8;
                   }
             }
       </style>
 </head>
 
 <body>
+      <div class="container">
 
-      <header>
-            <h1>Christian Tarrasch</h1>
-            <nav>
-                  <a href="mailto:christiantarrasch@gmail.com">Email</a>
-                  <span>/</span>
-                  <a href="https://github.com/cftarrasch" target="_blank">GitHub</a>
-                  <span>/</span>
-                  <a href="https://www.linkedin.com/in/christiantarrasch/" target="_blank">LinkedIn</a>
-                  <span>/</span>
-                  <a href="Tarrasch_Christian.pdf" target="_blank">Resume</a>
-            </nav>
-            <div style="margin-top: 5px; font-size: 0.95rem; color: #666;">
-                  Jump to: <a href="#projects" style="color: #666;">Projects</a>, <a href="#experience"
-                        style="color: #666;">Experience</a>, <a href="#leadership" style="color: #666;">Leadership</a>
-            </div>
-      </header>
+            <header>
+                  <div class="hero-layout">
+                        <div class="hero-content">
+                              <h1>Hi! I'm Christian.</h1>
+                              <nav class="hero-links">
+                                    <a href="mailto:christiantarrasch@gmail.com">Email</a>
+                                    <a href="https://github.com/cftarrasch" target="_blank">GitHub</a>
+                                    <a href="https://www.linkedin.com/in/christiantarrasch/"
+                                          target="_blank">LinkedIn</a>
+                                    <a href="Tarrasch_Christian.pdf" target="_blank">Resume</a>
+                              </nav>
+                              <div class="bio">
+                                    <p style="margin-bottom: 1rem;">
+                                          Aspiring Graphics & Physics Engineer with a passion for rigid body
+                                          dynamics,
+                                          fluid simulations, and physically-based
+                                          rendering. I build accessible, high-performance tools for
+                                          real-time rendering and animation.
+                                    </p>
+                                    <p style="font-size: 0.95em; color: var(--text-muted);">
+                                          B.S. Applied Physics — Columbia University, May 2026
+                                    </p>
+                                    <p style="font-size: 0.95em; color: var(--text-muted);">
+                                          B.A. Physics — Sarah Lawrence College, May 2026
+                                    </p>
+                              </div>
+                        </div>
+                        <!-- Profile Image -->
+                        <img src="header.png" alt="Christian Tarrasch" class="profile-photo">
+                  </div>
+            </header>
 
-      <div class="profile-container">
-            <div class="profile-text">
-                  <p>
-                        Aspiring Graphics & Physics Engineer with a strong foundation in mechanics and simulation.
-                        I am a dual-degree graduate (May 2026) of <strong>Columbia University (B.S. Applied
-                              Physics)</strong> and <strong>Sarah
-                              Lawrence College (B.A. Physics)</strong>.
-                  </p>
-                  <p>
-                        My technical interests focus on <strong>rigid body dynamics</strong>, <strong>fluid
-                              simulations</strong>, and <strong>physically-based
-                              rendering</strong>. I am passionate about applying rigorous mathematical concepts to
-                        create accessible,
-                        high-performance tools for real-time rendering and animation. When I'm not coding, I enjoy
-                        gardening, playing my guitar, and exercising.
-                  </p>
-            </div>
-            <img src="header.png" alt="Profile Photo" class="profile-photo">
+            <section id="projects">
+                  <h2 class="section-title">Technical Projects</h2>
+                  <div class="projects-grid">
+
+                        <!-- Project 1 -->
+                        <a href="https://github.com/pavilioan/raytracer" class="project-card" target="_blank">
+                              <div class="card-image">
+                                    <img src="big.png" alt="Ray Tracer"
+                                          style="width: 100%; height: 100%; object-fit: cover;">
+                              </div>
+                              <div class="card-content">
+                                    <div class="card-title">
+                                          Ray Tracer
+                                          <span class="card-arrow">→</span>
+                                    </div>
+                                    <div class="card-tags">C++ • Metal Materials • Antialiasing</div>
+                                    <div class="card-desc">
+                                          A robust C++ ray tracer implementation featuring Lambertian diffuse and
+                                          dielectric materials,
+                                          focusing on performance and correct global illumination handling.
+                                    </div>
+                              </div>
+                        </a>
+
+                        <!-- Project 2 -->
+                        <a href="https://github.com/pavilioan/PhysicsEngine" class="project-card" target="_blank">
+                              <div class="card-image physics">
+                                    <span>Physics Engine Preview</span>
+                              </div>
+                              <div class="card-content">
+                                    <div class="card-title">
+                                          Physics Engine Testbed
+                                          <span class="card-arrow">→</span>
+                                    </div>
+                                    <div class="card-tags">C++ • OpenGL • GLM</div>
+                                    <div class="card-desc">
+                                          A custom lightweight 2D/3D physics engine built from scratch. Implements
+                                          collision detection,
+                                          impulse resolution, and rigid body motion integration for real-time
+                                          simulation.
+                                    </div>
+                              </div>
+                        </a>
+
+                  </div>
+            </section>
+
+            <!-- Consolidated Background Section -->
+            <section id="background">
+                  <h2 class="section-title">Publications</h2>
+
+                  <div class="compact-item">
+                        <div class="compact-date">2024</div>
+                        <div class="compact-content">
+                              <strong>Making NMR Resonate: Learning Quantum Mechanics Through NMR</strong>
+                              <div class="venue">American Chemical Society (ACS) • <a
+                                          href="https://advlabs.aapt.org/bfy4/files/Workshop_MakingNMRResonate.pdf"
+                                          style="text-decoration: underline;">Read PDF</a></div>
+                        </div>
+                  </div>
       </div>
-
-      <section id="news">
-            <h2>News</h2>
-            <div class="news-item">
-                  <div class="news-date">Feb 2025</div>
-                  <a href="https://www.linkedin.com/feed/update/urn:li:activity:7300908213539897344/"
-                        class="news-content">I was named the Thomas C. Marshall Scholar at Columbia University, a
-                        scholarship awarded annually
-                        to one undergraduate student in the Department of Applied Physics and Applied Math.</a>
-            </div>
-            <div class="news-item">
-                  <div class="news-date">Sept 2024</div>
-                  <div class="news-content">I was accepted into Columbia University's 3-2 Combined Plan Program
-                        to study Applied Physics, while also being awarded a full-ride.</div>
-            </div>
-            <div class="news-item">
-                  <div class="news-date">Winter 2024</div>
-                  <div class="news-content">Led the Sarah Lawrence SPS club to be awarded "Distinguished Chapter" and
-                        featured in the SPS magazine.</div>
-            </div>
-            <div class="news-item">
-                  <div class="news-date">Sept 2022</div>
-                  <div class="news-content">I was named a Dean Scholar at Sarah Lawrence College.</div>
-            </div>
-
       </section>
 
-      <section id="publications">
-            <h2>Publications</h2>
-
-            <div class="publication-item">
-                  <a href="https://advlabs.aapt.org/bfy4/files/Workshop_MakingNMRResonate.pdf" class="pub-title">Making
-                        NMR Resonate: Learning Quantum Mechanics Through NMR</a>
-                  <div class="pub-authors"><strong>Christian Tarrasch</strong>, Ashley Spector-Townsend, Merideth Frey
-                  </div>
-                  <div class="pub-venue">American Chemical Society (ACS), 2024</div>
-                  <div>
-                        <a href="https://advlabs.aapt.org/bfy4/files/Workshop_MakingNMRResonate.pdf">PDF, </a><a
-                              href="https://sites.google.com/view/makingnmr/home">Project Page</a>
-                  </div>
-            </div>
-      </section>
-
-      <section id="projects">
-            <h2>Projects</h2>
-
-            <div class="publication-item">
-                  <a href="https://github.com/pavilioan/raytracer" class="pub-title">Ray Tracer</a>
-                  <div class="pub-venue" style="font-size: 0.85rem; margin-bottom: 4px;">C++ | Lambertian Diffuse |
-                        Metal Materials</div>
-                  <p style="font-size: 0.95rem; color: #555; margin-top: 5px;">
-                        A C++ ray tracer implementation based on Peter Shirley's "Ray Tracing in One Weekend." Features
-                        include antialiasing, diffuse materials, and dielectric materials (glass).
-                  </p>
-            </div>
-
-            <div class="publication-item">
-                  <a href="https://github.com/pavilioan/PhysicsEngine" class="pub-title">Physics Engine Testbed</a>
-                  <div class="pub-venue" style="font-size: 0.85rem; margin-bottom: 4px;">C++ | OpenGL | GLM Math Library
-                  </div>
-                  <p style="font-size: 0.95rem; color: #555; margin-top: 5px;">
-                        A lightweight 2D/3D physics engine testbed developed in-house. Implements collision detection,
-                        impulse resolution, and rigid body motion integration for real-time simulation.
-                  </p>
-            </div>
-      </section>
-
-      <section id="experience">
-            <h2>Experience</h2>
-
-            <div class="publication-item">
-                  <span class="pub-title">Freelance / Self-Employed</span>
-                  <div class="pub-authors">Founder & Web Developer</div>
-                  <div class="pub-venue">Aug 2021 – Present</div>
-                  <p style="font-size: 0.95rem; color: #555; margin-top: 5px;">
-                        Manage end-to-end website projects for small businesses, covering requirements gathering, UX
-                        strategy, and SEO.
-                        Successfully reduced annual costs by over 50% for Wedgwood International Seminar by streamlining
-                        hosting solutions.
-                  </p>
-            </div>
-
-            <div class="publication-item">
-                  <span class="pub-title">Sarah Lawrence College</span>
-                  <div class="pub-authors">Undergraduate Physics Researcher</div>
-                  <div class="pub-venue">May 2023 – May 2024</div>
-                  <p style="font-size: 0.95rem; color: #555; margin-top: 5px;">
-                        Secured an NSF-IUSE grant to develop NMR spectroscopy modules for quantum mechanics education.
-                        Conducted T1 and T2 relaxation experiments and analyzed data to refine curriculum content.
-                  </p>
-            </div>
-      </section>
-
-      <section id="leadership">
-            <h2>Leadership</h2>
-            <div class="publication-item">
-                  <span class="pub-title">Society of Physics Students (SPS)</span>
-                  <div class="pub-authors">Chapter Treasurer</div>
-                  <div class="pub-venue">Sarah Lawrence College</div>
-                  <p style="font-size: 0.95rem; color: #555; margin-top: 5px;">
-                        Stewarded the chapter budget and led the newly founded club to be awarded "Distinguished
-                        Chapter"
-                        featured in the SPS magazine.
-                  </p>
-            </div>
-
-            <div class="publication-item">
-                  <span class="pub-title">Student Faculty Search Committee</span>
-                  <div class="pub-authors">Official Student Representative</div>
-                  <div class="pub-venue">Sarah Lawrence College</div>
-                  <p style="font-size: 0.95rem; color: #555; margin-top: 5px;">
-                        Nominated by faculty to evaluate academic candidate presentations and provide strategic feedback
-                        to hiring committee.
-                  </p>
-            </div>
-      </section>
-
+      </div>
 </body>
 
 </html>
